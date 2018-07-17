@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,9 +23,12 @@ public class AppController {
 		return new ModelAndView("index", "entities", todoService.findAll());
 	}
 
-	@GetMapping("/create")
-	public ModelAndView createForm() {
-		return new ModelAndView("form", "todo", new Todo());
+	@GetMapping({ "/create", "/create/{id}" })
+	public ModelAndView createForm(@PathVariable(required = false) Long id) {
+		Todo todo = new Todo();
+		if (id != null)
+			todo = todoService.find(id);
+		return new ModelAndView("form", "todo", todo);
 	}
 
 	@PostMapping("/create")

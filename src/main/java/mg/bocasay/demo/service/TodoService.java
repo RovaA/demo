@@ -2,31 +2,15 @@ package mg.bocasay.demo.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import mg.bocasay.demo.entity.Todo;
-import mg.bocasay.demo.repository.TodoRepository;
 
-@Service
-public class TodoService {
+public interface TodoService {
 
-	@Autowired
-	private TodoRepository repository;
+	Todo find(Long id);
 
-	public Todo find(Long id) {
-		return repository.findById(id).orElse(new Todo());
-	}
+	List<Todo> findAll();
 
-	public List<Todo> findAll() {
-		return repository.findAll();
-	}
+	void save(Todo todo);
 
-	public void save(Todo todo) {
-		repository.save(todo);
-	}
-
-	public void delete(Todo todo) {
-		repository.delete(todo);
-	}
+	void delete(Todo todo);
 }
