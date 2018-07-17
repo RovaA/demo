@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Demo</title>
+</head>
+<body>
+	<h2>List of Todo</h2>
+	<a th:href="@{/create}">Create</a>
+	<table border="1">
+		<tr th:each="entity : ${entities}">
+			<td>		
+				<span th:text="${entity.text}"></span>
+	        </td>
+			<td>		
+				<form th:action="@{/delete}" method="post">
+					<input type="hidden" name="id" th:value="${entity.id}" />
+		            <button type="submit">Delete</button>
+		        </form>
+	        </td>
+		</tr>
+	</table>
+</body>
+</html>

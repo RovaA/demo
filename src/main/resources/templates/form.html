@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Demo</title>
+</head>
+<body>
+	<h2>Form</h2>
+	<h1>Form</h1>
+    <form action="#" th:action="@{/create}" th:object="${todo}" method="post">
+        <p>Message: <input type="text" th:field="*{text}" /></p>
+        <p><input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
