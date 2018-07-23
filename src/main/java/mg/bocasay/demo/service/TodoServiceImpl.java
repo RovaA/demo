@@ -3,11 +3,13 @@ package mg.bocasay.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import mg.bocasay.demo.entity.Todo;
 import mg.bocasay.demo.repository.TodoRepository;
 
+@Scope(value = "singleton")
 @Service
 public class TodoServiceImpl implements TodoService {
 
@@ -25,8 +27,8 @@ public class TodoServiceImpl implements TodoService {
 	}
 
 	@Override
-	public void save(Todo todo) {
-		repository.save(todo);
+	public Todo save(Todo todo) {
+		return repository.save(todo);
 	}
 
 	@Override
