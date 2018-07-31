@@ -1,19 +1,27 @@
 <div class="container">
 	<h2>Todo</h2>
 	<div ng-controller="TodoListController as todoList">
-		<form ng-submit="todoList.addTodo()">
-			<input type="text" ng-model="todoList.todoText" size="30" placeholder="Add new todo..." required ng-minlength="2"/> 
+		<div color-green>{{ todoList.remaining() }} of {{ todoList.todos.length }}
+			remaining</div>
+		<br/>
+		<form ng-submit="todoList.addTodo()" class="form-inline">
+			<input type="text" ng-model="todoList.todoText" size="30" placeholder="Add new todo..." required ng-minlength="2" class="form-control"/> 
 			<input class="btn btn-primary" type="submit" value="add" />
 		</form>
-		<span color-green>{{ todoList.remaining() }} of {{ todoList.todos.length }}
-			remaining</span>
-		<ul class="unstyled">
-			<li ng-repeat="todo in todoList.todos track by todo.id">
-				<label> 
-					<a href="" ng-click="todoList.delete(todo)" class="btn btn-danger">Delete</a>
-					<input type="checkbox"	ng-model="todo.done" ng-change="todoList.update(todo)"/> 
-					<a ng-href="#/detail/{{ todo.id }}">{{ todo.text }}</a>
-				</label>
+		<br/>
+		<ul class="list-group">
+			<li ng-repeat="todo in todoList.todos track by todo.id" class="list-group-item">
+				<div class="row">
+					<div class="col-1">
+						<input type="checkbox"	ng-model="todo.done" ng-change="todoList.update(todo)"/>
+					</div>
+					<div class="col-10">
+						<a ng-href="#/detail/{{ todo.id }}">{{ todo.text }}</a>
+					</div>
+					<div class="col-1">
+						<a href="" ng-click="todoList.delete(todo)" class="btn btn-danger">Delete</a>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>

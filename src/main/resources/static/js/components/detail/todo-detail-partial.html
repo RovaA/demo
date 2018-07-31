@@ -3,13 +3,13 @@
 	<div ng-controller="TodoDetailController as todoDetail">
 		<div>[ <a ng-href="#/" >Home</a> ]</div>
 		<br/>
-		<table border="1">
+		<table class="table">
 		<tr>
-			<th>ID</th>
-			<th>Creation date</th>
-			<th>Update date</th>
-			<th>Text</th>
-			<th>Done</th>
+			<th scope="col">ID</th>
+			<th scope="col">Creation date</th>
+			<th scope="col">Update date</th>
+			<th scope="col">Text</th>
+			<th scope="col">Done</th>
 		</tr>
 		<tr>
 			<td>{{ todoDetail.entity.id }}</td>
