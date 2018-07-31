@@ -1,5 +1,5 @@
 <div class="container">
-	<h2>Todo :</h2>
+	<h2>Todo</h2>
 	<div ng-controller="TodoListController as todoList">
 		<form ng-submit="todoList.addTodo()">
 			<input type="text" ng-model="todoList.todoText" size="30" placeholder="Add new todo..." required ng-minlength="2"/> 
@@ -10,9 +10,9 @@
 		<ul class="unstyled">
 			<li ng-repeat="todo in todoList.todos track by todo.id">
 				<label> 
+					<a href="" ng-click="todoList.delete(todo)" class="btn btn-danger">Delete</a>
 					<input type="checkbox"	ng-model="todo.done" ng-change="todoList.update(todo)"/> 
 					<a ng-href="#/detail/{{ todo.id }}">{{ todo.text }}</a>
-					<a href="" ng-click="todoList.delete(todo)">Delete</a>
 				</label>
 			</li>
 		</ul>
