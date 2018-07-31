@@ -1,5 +1,7 @@
 Application.Controllers.controller('TodoListController', function($scope, $http, todoService) {
 	var todoList = this;
+	
+	$scope.q = '';
 
 	todoService.findAll()
 		.then(
@@ -27,14 +29,6 @@ Application.Controllers.controller('TodoListController', function($scope, $http,
 			count += todo.done ? 0 : 1;
 		});
 		return count;
-	};
-
-	todoList.archive = function() {
-		var oldTodos = todoList.todos;
-		todoList.todos = [];
-		angular.forEach(oldTodos, function(todo) {
-			if (!todo.done) todoList.todos.push(todo);
-		});
 	};
 	
 	todoList.update = function(todo) {
