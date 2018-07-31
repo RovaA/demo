@@ -24,7 +24,7 @@
 				</td>
 				<td>
 					<div ng-if="!editMode">
-						{{ todoDetail.entity.creationDate }}
+						{{ todoDetail.entity.creationDate | date:'dd-MM-yyyy' }}
 					</div>
 					<div ng-if="editMode">
 						<input type="text" ng-model="todoDetail.entity.creationDate" disabled />
@@ -32,7 +32,7 @@
 				</td>
 				<td>
 					<div ng-if="!editMode">
-						{{ todoDetail.entity.updateDate }}
+						{{ todoDetail.entity.updateDate | date:'dd-MM-yyyy' }}
 					</div>
 					<div ng-if="editMode">
 						<input type="text" ng-model="todoDetail.entity.updateDate" disabled />

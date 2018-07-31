@@ -30,6 +30,7 @@
 						<a href="" ng-click="todoList.delete(todo)" class="btn btn-danger">Delete</a>
 					</div>
 				</div>
+				<small>{{ todo.creationDate | date:'dd-MM-yyyy' }} | {{ todo.updateDate | date:'dd-MM-yyyy' }}</small>
 			</li>
 		</ul>
 	</div>
