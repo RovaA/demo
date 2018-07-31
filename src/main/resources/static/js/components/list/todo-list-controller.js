@@ -1,7 +1,8 @@
 Application.Controllers.controller('TodoListController', function($scope, $http, todoService) {
 	var todoList = this;
 	
-	$scope.q = '';
+	$scope.searchModel = '';
+	$scope.doneModel = false;
 
 	todoService.findAll()
 		.then(

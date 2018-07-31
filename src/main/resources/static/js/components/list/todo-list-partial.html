@@ -9,9 +9,16 @@
 			<input class="btn btn-primary" type="submit" value="add" />
 		</form>
 		<br/>
-		<input type="text" class="form-control" placeholder="Filter todo..." ng-model="q"/>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<div class="input-group-text">
+			      <input type="checkbox" ng-model="doneModel" aria-label="Checkbox for following text input">
+			    </div>
+			</div>
+			<input type="text" class="form-control" placeholder="Filter todo..." ng-model="searchModel"  aria-describedby="basic-addon1"/>
+		</div>
 		<ul class="list-group">
-			<li ng-repeat="todo in todoList.todos | filter:{text:q}" class="list-group-item">
+			<li ng-repeat="todo in todoList.todos | filter:{text:searchModel} | isDone:doneModel" class="list-group-item">
 				<div class="row">
 					<div class="col-1">
 						<input type="checkbox"	ng-model="todo.done" ng-change="todoList.update(todo)"/>
