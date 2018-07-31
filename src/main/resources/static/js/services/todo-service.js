@@ -1,5 +1,8 @@
 Application.Services.factory('todoService', function($q, $rootScope, $http) {
 	return {
+		find : function(id) {
+			return $http.get('/api/todo/' + id);
+		},
 		findAll : function() {
 			return $http.get('/api/todo/list');
 		},

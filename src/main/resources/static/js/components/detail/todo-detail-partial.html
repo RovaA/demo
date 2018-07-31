@@ -1,0 +1,21 @@
+<h2>Detail :</h2>
+<div ng-controller="TodoDetailController as todoDetail">
+	<div>[ <a ng-href="#/" >Home</a> ]</div>
+	<br/>
+	<table border="1">
+	<tr>
+		<th>ID</th>
+		<th>Creation date</th>
+		<th>Update date</th>
+		<th>Text</th>
+		<th>Done</th>
+	</tr>
+	<tr>
+		<td>{{ todoDetail.entity.id }}</td>
+		<td>{{ todoDetail.entity.creationDate }}</td>
+		<td>{{ todoDetail.entity.updateDate }}</td>
+		<td>{{ todoDetail.entity.text }}</td>
+		<td><input type="checkbox" ng-model="todoDetail.entity.done" disabled/></td>
+	</tr>
+	</table>
+</div>

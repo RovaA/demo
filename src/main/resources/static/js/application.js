@@ -15,14 +15,18 @@ Application.Directives = angular.module('application.directives', []);
 
 
 angular.module('application', ['application.filters', 'application.services', 'application.directives', 'application.constants', 'application.controllers', 'ngRoute']).
-  config(['$routeProvider', function($routeProvider) {
+  config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
       when('/', {
-    	  templateUrl: 'js/components/todo-partial.html',
+    	  templateUrl: 'js/components/list/todo-list-partial.html',
     	  controller: 'TodoListController'
       }).
+      when('/detail/:id', {
+    	  templateUrl: 'js/components/detail/todo-detail-partial.html',
+    	  controller: 'TodoDetailController'
+      }).
       otherwise({
-    	  templateUrl: 'js/components/todo-partial.html',
-    	  controller: 'TodoListController'
+    	  redirectTo: '/'
       });
+    $locationProvider.hashPrefix('');
   }]);
