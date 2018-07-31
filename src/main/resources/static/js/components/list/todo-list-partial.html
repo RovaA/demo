@@ -11,7 +11,7 @@
 		<br/>
 		<input type="text" class="form-control" placeholder="Filter todo..." ng-model="q"/>
 		<ul class="list-group">
-			<li ng-repeat="todo in todoList.todos | filter:q" class="list-group-item">
+			<li ng-repeat="todo in todoList.todos | filter:{text:q}" class="list-group-item">
 				<div class="row">
 					<div class="col-1">
 						<input type="checkbox"	ng-model="todo.done" ng-change="todoList.update(todo)"/>
