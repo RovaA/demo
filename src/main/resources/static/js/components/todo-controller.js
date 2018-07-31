@@ -8,14 +8,16 @@ Application.Controllers.controller('TodoListController', function($scope, $http,
 
 	todoList.addTodo = function() {
 		var newTodo = {
+			creationDate: null,
+			updateDate: null,
 			id : null,
 			done : false,
 			text : todoList.todoText
 		}
-		todoService.create(newTodo)
+		todoService.createOrUpdate(newTodo)
 			.then(
 				response => todoList.todos.push(response.data), 
-				reponse => console.log("error on create"));
+				response => console.log("error on create"));
 		todoList.todoText = '';
 	};
 
