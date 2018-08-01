@@ -18,7 +18,7 @@
 			<input type="text" class="form-control" placeholder="Filter todo..." ng-model="searchModel"  aria-describedby="basic-addon1"/>
 		</div>
 		<ul class="list-group">
-			<li ng-repeat="todo in todoList.todos | filter:{text:searchModel} | isDone:doneModel" class="list-group-item">
+			<li ng-repeat="todo in todoList.todos | orderBy:'updateDate':true | filter:{text:searchModel} | isDone:doneModel" class="list-group-item">
 				<div class="row">
 					<div class="col-1">
 						<input type="checkbox"	ng-model="todo.done" ng-change="todoList.update(todo)"/>
@@ -30,7 +30,7 @@
 						<a href="" ng-click="todoList.delete(todo)" class="btn btn-danger">Delete</a>
 					</div>
 				</div>
-				<small>{{ todo.creationDate | date:'dd-MM-yyyy' }} | {{ todo.updateDate | date:'dd-MM-yyyy' }}</small>
+				<small>Create: {{ todo.creationDate | date:'dd-MM-yyyy' }} | Update: {{ todo.updateDate | date:'dd-MM-yyyy' }}</small>
 			</li>
 		</ul>
 	</div>
