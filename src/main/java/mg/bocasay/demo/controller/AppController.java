@@ -19,8 +19,13 @@ public class AppController {
 	TodoService todoService;
 
 	@GetMapping("/")
-	public ModelAndView index() {
-		return new ModelAndView("index", "entities", todoService.findAll());
+	public String index() {
+		return "index";
+	}
+
+	@GetMapping("/indexleaf")
+	public ModelAndView indexLeaf() {
+		return new ModelAndView("indexLeaf", "entities", todoService.findAll());
 	}
 
 	@GetMapping({ "/create", "/create/{id}" })
@@ -34,12 +39,12 @@ public class AppController {
 	@PostMapping("/create")
 	public String createSubmit(@ModelAttribute Todo todo) {
 		todoService.save(todo);
-		return "redirect:";
+		return "redirect:/indexleaf";
 	}
 
 	@PostMapping("/delete")
 	public String delete(@RequestParam Long id) {
 		todoService.delete(todoService.find(id));
-		return "redirect:";
+		return "redirect:/indexleaf";
 	}
 }
