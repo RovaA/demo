@@ -2,7 +2,9 @@ package mg.bocasay.demo.service;
 
 import java.util.List;
 
-public interface IsService<E, I> {
+import mg.bocasay.demo.entity.IsEntity;
+
+public interface IsService<E extends IsEntity<I>, I> {
 
 	E find(I id);
 

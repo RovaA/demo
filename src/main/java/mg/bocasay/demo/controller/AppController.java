@@ -16,7 +16,7 @@ import mg.bocasay.demo.service.TodoService;
 public class AppController {
 
 	@Autowired
-	TodoService todoService;
+	protected TodoService todoService;
 
 	@GetMapping("/")
 	public String index() {
