@@ -8,27 +8,32 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import mg.bocasay.demo.domain.IsEntity;
 
-public abstract class AbsServiceImpl<E extends IsEntity<I>, I> implements IsService<E, I> {
+public abstract class AbsServiceImpl<E extends IsEntity<I>, I, R extends JpaRepository<E, I>> implements IsService<E, I> {
+	
+	protected R repository;
+	
+	public AbsServiceImpl(R repository) {
+		this.repository = repository;
+	}
 
 	@Override
 	public E find(I id) {
-		return getRepository().findById(id).orElseThrow(() -> new EntityNotFoundException());
+		return repository.findById(id).orElseThrow(() -> new EntityNotFoundException());
 	}
 
 	@Override
 	public List<E> findAll() {
-		return getRepository().findAll();
+		return repository.findAll();
 	}
 
 	@Override
 	public E save(E entity) {
-		return getRepository().save(entity);
+		return repository.save(entity);
 	}
 
 	@Override
 	public void delete(E entity) {
-		getRepository().delete(entity);
+		repository.delete(entity);
 	}
 
-	protected abstract JpaRepository<E, I> getRepository();
 }
