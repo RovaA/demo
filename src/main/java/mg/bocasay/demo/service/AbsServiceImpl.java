@@ -6,7 +6,7 @@ import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import mg.bocasay.demo.entity.IsEntity;
+import mg.bocasay.demo.domain.IsEntity;
 
 public abstract class AbsServiceImpl<E extends IsEntity<I>, I> implements IsService<E, I> {
 

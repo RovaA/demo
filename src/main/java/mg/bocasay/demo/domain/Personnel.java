@@ -1,4 +1,4 @@
-package mg.bocasay.demo.entity;
+package mg.bocasay.demo.domain;
 
 import javax.persistence.Entity;
 

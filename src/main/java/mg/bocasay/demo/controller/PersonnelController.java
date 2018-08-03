@@ -9,15 +9,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import mg.bocasay.demo.entity.Personnel;
+import mg.bocasay.demo.domain.Personnel;
 import mg.bocasay.demo.service.PersonnelService;
 
 @RestController
 @RequestMapping("/api/personnel")
 public class PersonnelController {
 
-	@Autowired
 	protected PersonnelService service;
+
+	@Autowired
+	public PersonnelController(PersonnelService service) {
+		this.service = service;
+	}
 
 	@PostMapping("/create")
 	public Personnel create(@RequestBody Personnel personnel) {

@@ -12,15 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import mg.bocasay.demo.entity.Todo;
+import mg.bocasay.demo.domain.Todo;
 import mg.bocasay.demo.service.TodoService;
 
 @RestController
 @RequestMapping("/api/todo")
 public class TodoController {
 
-	@Autowired
 	protected TodoService service;
+
+	@Autowired
+	public TodoController(TodoService service) {
+		this.service = service;
+	}
 
 	@PostMapping("/create")
 	public Todo create(@RequestBody Todo todo) {

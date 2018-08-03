@@ -1,4 +1,4 @@
-package mg.bocasay.demo.entity;
+package mg.bocasay.demo.domain;
 
 import java.util.Date;
 
