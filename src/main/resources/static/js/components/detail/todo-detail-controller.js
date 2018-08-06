@@ -1,4 +1,4 @@
-Application.Controllers.controller('TodoDetailController', function($scope, $routeParams, todoService) {
+Application.Controllers.controller('TodoDetailController', ['$scope', '$routeParams', 'todoService', function($scope, $routeParams, todoService) {
 	var todoDetail = this;
 	
 	$scope.editMode = false;
@@ -20,4 +20,4 @@ Application.Controllers.controller('TodoDetailController', function($scope, $rou
 			todoDetail.changeMode();
 		});
 	};
-  });
+  }]);

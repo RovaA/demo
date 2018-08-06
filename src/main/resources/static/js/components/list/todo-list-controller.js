@@ -1,4 +1,4 @@
-Application.Controllers.controller('TodoListController', function($scope, $http, todoService) {
+Application.Controllers.controller('TodoListController', ['$scope', '$http', 'todoService', function($scope, $http, todoService) {
 	var todoList = this;
 	
 	$scope.searchModel = '';
@@ -48,4 +48,4 @@ Application.Controllers.controller('TodoListController', function($scope, $http,
 			todoList.todos = todoList.todos.filter(e => e.id !== todo.id);
 		});
 	};
-  });
+  }]);

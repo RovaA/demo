@@ -1,4 +1,4 @@
-Application.Services.factory('todoService', function($q, $rootScope, $http) {
+Application.Services.factory('todoService', ['$q', '$rootScope', '$http', function($q, $rootScope, $http) {
 	return {
 		find : function(id) {
 			return $http.get('/api/todo/' + id);
@@ -13,4 +13,4 @@ Application.Services.factory('todoService', function($q, $rootScope, $http) {
 			return $http.delete('/api/todo/delete', {params: {id : entity.id}});
 		}
 	};
-});
+}]);
