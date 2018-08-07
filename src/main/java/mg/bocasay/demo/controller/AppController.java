@@ -23,6 +23,11 @@ public class AppController {
 		return "index";
 	}
 
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
 	@GetMapping("/indexleaf")
 	public ModelAndView indexLeaf() {
 		return new ModelAndView("indexLeaf", "entities", todoService.findAll());

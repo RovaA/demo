@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import mg.bocasay.demo.config.provider.CustomAuthenticationProvider;
+import mg.bocasay.demo.service.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -19,19 +19,28 @@ import mg.bocasay.demo.config.provider.CustomAuthenticationProvider;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	CustomAuthenticationProvider authenticationProvider;
+	UserServiceImpl userDetailsService;
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(authenticationProvider);
-		/*auth.inMemoryAuthentication().withUser("user").password(passwordEncoder().encode("user")).authorities("USER");*/
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated()
-		.and().csrf().disable();
-		super.configure(http);
+		http
+			.authorizeRequests()
+				.antMatchers("/user/**").permitAll()
+				.anyRequest().authenticated()
+				.and()
+			.formLogin()
+				.loginPage("/login")
+				.permitAll()
+				.and()
+			.logout()
+				.permitAll()
+				.and()
+			.csrf().disable();
 	}
 
 	@Bean
