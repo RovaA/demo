@@ -16,8 +16,12 @@ import mg.bocasay.demo.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-	@Autowired
 	protected UserService userService;
+
+	@Autowired
+	public UserController(UserService userService) {
+		this.userService = userService;
+	}
 
 	@GetMapping("/signup")
 	public ModelAndView signup() {

@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import mg.bocasay.demo.service.UserServiceImpl;
+import mg.bocasay.demo.service.UserService;
 
 @Configuration
 @EnableWebSecurity
@@ -19,11 +19,11 @@ import mg.bocasay.demo.service.UserServiceImpl;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	UserServiceImpl userDetailsService;
+	protected UserService userService;
 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
 
 	@Override
