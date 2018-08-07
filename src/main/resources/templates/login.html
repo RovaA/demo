@@ -12,14 +12,15 @@
 		<table>
 	        <tr>
 	        	<td><label>User Name: </label></td>
-	        	<td><input type="text" name="username" /></td>
+	        	<td><input type="text" name="username" class="form-control" /></td>
 	        </tr>
 	        <tr>
 	        	<td>Password: </label></td>
-	        	<td><input type="password" name="password" /></td>
+	        	<td><input type="password" name="password" class="form-control" /></td>
 	        </tr>
 	        <tr>
 	        	<td><input type="submit" value="Sign In" class="btn btn-primary" /></td>
+	        	<td><a th:href="@{'/user/signup'}">Create user.</a></td>
 	        </tr>
 	    </table>
 	    </form>

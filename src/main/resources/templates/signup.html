@@ -13,16 +13,16 @@
 		<table>
 	        <tr>
 	        	<td><label>User Name: </label></td>
-	        	<td><input type="text" name="username" th:field="*{username}" /></td>
+	        	<td><input type="text" name="username" th:field="*{username}" class="form-control" /></td>
 	        </tr>
 	        <tr>
 	        	<td>Password: </label></td>
-	        	<td><input type="text" name="password" th:field="*{password}" /></td>
+	        	<td><input type="text" name="password" th:field="*{password}" class="form-control" /></td>
 	        </tr>
 	        <tr>
 	        	<td>Role: </label></td>
 	        	<td>
-	        		<select name="role">
+	        		<select name="role" class="form-control">
 	        			<option th:each="role : ${roles}" th:field="*{role}" th:value="${role.name()}" th:text="${role.name()}"></option>
 	        		</select>
 	        	</td>
