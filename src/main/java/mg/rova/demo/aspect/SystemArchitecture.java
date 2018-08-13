@@ -18,12 +18,21 @@ public class SystemArchitecture {
 	private void createTodo() {
 	}
 
+	@Pointcut("execution(* mg.rova.demo.controller.TodoController.find(..))")
+	private void findTodo() {
+	}
+
 	@Pointcut("execution(* mg.rova.demo.controller.TodoController.list(..))")
 	private void todoList() {
 	}
 	
 	@AfterReturning(pointcut="mg.rova.demo.aspect.SystemArchitecture.createTodo()", returning="todo")
 	public void createTodo(Todo todo) {
+		Logger.getLogger(this.getClass().getName()).info(todo.toString());
+	}
+	
+	@AfterReturning(pointcut="mg.rova.demo.aspect.SystemArchitecture.findTodo()", returning="todo")
+	public void findTodo(Todo todo) {
 		Logger.getLogger(this.getClass().getName()).info(todo.toString());
 	}
 	
