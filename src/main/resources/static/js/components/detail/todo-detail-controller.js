@@ -5,7 +5,7 @@ Application.Controllers.controller('TodoDetailController', ['$scope', '$routePar
 	
 	let todoId = $routeParams.id; 
 	
-	var entityReadonly;
+	var entityReadOnly;
 
 	todoService.find(todoId)
 		.then(
