@@ -34,9 +34,9 @@ Application.Controllers.controller('TodoListController', ['$scope', '$http', 'to
 	
 	todoList.update = function(todo) {
 		todoService.createOrUpdate(todo).then(response => {
-			todoList.todos.map(x => {
-				if (x.id === response.id) {
-					return response;
+			todoList.todos = todoList.todos.map(x => {
+				if (x.id === response.data.id) {
+					return response.data;
 				}
 				return x;
 			});
