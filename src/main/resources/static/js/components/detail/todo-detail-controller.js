@@ -4,10 +4,15 @@ Application.Controllers.controller('TodoDetailController', ['$scope', '$routePar
 	$scope.editMode = false;
 	
 	let todoId = $routeParams.id; 
+	
+	var entityReadonly;
 
 	todoService.find(todoId)
 		.then(
-			response => todoDetail.entity = response.data, 
+			response => {
+				todoDetail.entity = response.data; 
+				entityReadOnly = angular.copy(todoDetail.entity);
+			},
 			response => console.log("error on finding Entity"));
 	
 	todoDetail.changeMode = function() {
@@ -17,7 +22,12 @@ Application.Controllers.controller('TodoDetailController', ['$scope', '$routePar
 	todoDetail.updateTodo = function() {
 		todoService.createOrUpdate(todoDetail.entity).then(function(response) {
 			todoDetail.entity = response.data;
+			entityReadOnly = angular.copy(todoDetail.entity);
 			todoDetail.changeMode();
 		});
 	};
+	
+	todoDetail.noChange = function() {
+			return (angular.equals(entityReadOnly.text, todoDetail.entity.text) && angular.equals(entityReadOnly.done, todoDetail.entity.done))
+	}
   }]);

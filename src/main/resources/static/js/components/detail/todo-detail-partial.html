@@ -3,7 +3,7 @@
 	<div ng-controller="TodoDetailController as todoDetail">
 		<div>[ <a ng-href="#/" >Home</a> ]</div>
 		<br/>
-		<form ng-submit="todoDetail.updateTodo()">
+		<form name="form" ng-submit="todoDetail.updateTodo()">
 		<table class="table">
 			<tr>
 				<th scope="col">ID</th>
@@ -60,7 +60,7 @@
 					</div>
 					<div ng-if="editMode">
 						<div class="d-inline">
-							<button type="submit" class="btn btn-success">Save</button>
+							<button type="submit" class="btn btn-success" ng-disabled="todoDetail.noChange()">Save</button>
 						</div>
 						<div class="d-inline">
 							<a href="" class="btn btn-danger" ng-click="todoDetail.changeMode()">Cancel</a>
