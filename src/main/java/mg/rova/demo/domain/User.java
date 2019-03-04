@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @SuppressWarnings("serial")
 @Entity
-public class User extends AbsEntity implements UserDetails {
+public class User extends EntityAbs implements UserDetails {
 
 	@Column(nullable = false, unique = true)
 	private String username;

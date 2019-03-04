@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class AbsEntity implements IsEntity<Long> {
+public abstract class EntityAbs implements IsEntity<Long> {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

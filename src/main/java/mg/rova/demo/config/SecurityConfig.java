@@ -13,9 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import mg.rova.demo.service.UserService;
 
-@Configuration
 @EnableWebSecurity
-@ComponentScan("mg.rova.demo")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired

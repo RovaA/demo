@@ -8,11 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
-@EnableAutoConfiguration
-@EnableJpaRepositories("mg.rova.demo.repository")
 @EnableAspectJAutoProxy
-@ComponentScan("mg.rova.demo")
 @Import({ SecurityConfig.class })
-public class AppConfig {
+public class WebMvcConfig {
 
 }

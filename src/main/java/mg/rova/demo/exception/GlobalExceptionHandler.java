@@ -1,4 +1,4 @@
-package mg.rova.demo.config;
+package mg.rova.demo.exception;
 
 import javax.persistence.EntityNotFoundException;
 

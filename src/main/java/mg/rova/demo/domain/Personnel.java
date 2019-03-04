@@ -3,7 +3,7 @@ package mg.rova.demo.domain;
 import javax.persistence.Entity;
 
 @Entity
-public class Personnel extends AbsEntity {
+public class Personnel extends EntityAbs {
 
 	private String name;
 
