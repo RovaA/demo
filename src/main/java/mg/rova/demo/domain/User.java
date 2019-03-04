@@ -14,6 +14,8 @@ public class User extends EntityAbs {
 
 	private String password;
 
+	private String comment;
+
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
@@ -41,4 +43,11 @@ public class User extends EntityAbs {
 		this.role = role;
 	}
 
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 }
