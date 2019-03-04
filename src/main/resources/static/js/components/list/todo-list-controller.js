@@ -19,8 +19,9 @@ Application.Controllers.controller('TodoListController', ['$scope', '$http', 'to
 		}
 		todoService.createOrUpdate(newTodo)
 			.then(
-				response => todoList.todos.push(response.data), 
-				response => console.log("error on create"));
+				(response) => todoList.todos.push(response.data),
+				(response) => console.log("error on create");
+			);
 		todoList.todoText = '';
 	};
 
