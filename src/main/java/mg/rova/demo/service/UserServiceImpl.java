@@ -1,5 +1,6 @@
 package mg.rova.demo.service;
 
+import mg.rova.demo.service.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,10 +23,9 @@ public class UserServiceImpl extends AbsServiceImpl<User, Long, UserRepository> 
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		final User user = repository.findByUsername(username);
-		if (user == null)
-			throw new UsernameNotFoundException(username);
-		return user;
+		User user = repository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException(username));
+		return new UserDetailsImpl(user);
 	}
 
 	@Override

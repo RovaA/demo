@@ -1,20 +1,13 @@
 package mg.rova.demo.domain;
 
-import java.util.Arrays;
-import java.util.Collection;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 @SuppressWarnings("serial")
 @Entity
-public class User extends EntityAbs implements UserDetails {
+public class User extends EntityAbs {
 
 	@Column(nullable = false, unique = true)
 	private String username;
@@ -46,31 +39,6 @@ public class User extends EntityAbs implements UserDetails {
 
 	public void setRole(Role role) {
 		this.role = role;
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.asList(new SimpleGrantedAuthority(role.name()));
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
 	}
 
 }
