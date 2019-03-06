@@ -9,7 +9,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc
 @EnableAspectJAutoProxy
-@Import({ SecurityConfig.class })
 public class WebMvcConfig {
 
 }

@@ -26,12 +26,17 @@ public class TodoController {
 		this.service = service;
 	}
 
-	@PostMapping("/create")
+	@PostMapping
 	public Todo create(@RequestBody Todo todo) {
 		return service.save(todo);
 	}
 
-	@GetMapping("/list")
+	@PostMapping("/{id}")
+	public Todo update(@RequestBody Todo todo) {
+		return service.save(todo);
+	}
+
+	@GetMapping
 	public List<Todo> list() {
 		return service.findAll();
 	}
@@ -41,7 +46,12 @@ public class TodoController {
 		return service.find(id);
 	}
 
-	@DeleteMapping("/delete")
+	@GetMapping("/find/{term}")
+	public List<Todo> findByText(@PathVariable String term) {
+		return service.findByText(term);
+	}
+
+	@DeleteMapping
 	public void delete(@RequestParam Long id) {
 		service.delete(service.find(id));
 	}

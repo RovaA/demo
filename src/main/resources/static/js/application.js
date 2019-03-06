@@ -14,8 +14,20 @@ Application.Filters = angular.module('application.filters', []);
 Application.Directives = angular.module('application.directives', []);
 
 
-angular.module('application', ['application.filters', 'application.services', 'application.directives', 'application.constants', 'application.controllers', 'ngRoute']).
-  config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+angular.module('application',
+    [
+        'ngRoute',
+        'ngResource',
+
+        'application.filters',
+        'application.services',
+        'application.directives',
+        'application.constants',
+        'application.controllers'
+    ]
+)
+
+.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
     $routeProvider.
       when('/', {
     	  templateUrl: 'js/components/list/todo-list-partial.html',
@@ -28,5 +40,6 @@ angular.module('application', ['application.filters', 'application.services', 'a
       otherwise({
     	  redirectTo: '/'
       });
+
     $locationProvider.hashPrefix('');
   }]);

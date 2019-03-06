@@ -8,8 +8,10 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
+@Document(indexName = "demo", type = "todo")
 public class Todo extends EntityAbs {
 
 	private boolean done;

@@ -1,52 +1,48 @@
-Application.Controllers.controller('TodoListController', ['$scope', '$http', 'todoService', function($scope, $http, todoService) {
-	var todoList = this;
-	
+Application.Controllers.controller('TodoListController', ['$scope', '$http', 'Todo', 'todoService', function($scope, $http, Todo, todoService) {
+
 	$scope.searchModel = '';
 	$scope.doneModel = false;
 
-	todoService.findAll()
-		.then(
-			response => todoList.todos = response.data, 
-			reponse => console.log("error on findAll"));
+	Todo.query(function(todos) {
+        $scope.todos = todos;
+	});
 
-	todoList.addTodo = function() {
-		var newTodo = {
-			creationDate: null,
-			updateDate: null,
-			id : null,
-			done : false,
-			text : todoList.todoText
-		}
-		todoService.createOrUpdate(newTodo)
-			.then(
-				(response) => todoList.todos.push(response.data),
-				(response) => console.log("error on create")
-			);
-		todoList.todoText = '';
+	$scope.addTodo = function() {
+		var newTodo = new Todo();
+		newTodo.creationDate = null;
+        newTodo.updateDate = null;
+		newTodo.id = null;
+		newTodo.done = false;
+		newTodo.text = $scope.todoText;
+
+        newTodo.$save(function(todo) {
+            $scope.todos.push(todo)
+		});
+        $scope.todoText = '';
 	};
 
-	todoList.remaining = function() {
+    $scope.remaining = function() {
 		var count = 0;
-		angular.forEach(todoList.todos, function(todo) {
+		angular.forEach($scope.todos, function(todo) {
 			count += todo.done ? 0 : 1;
 		});
 		return count;
 	};
-	
-	todoList.update = function(todo) {
-		todoService.createOrUpdate(todo).then(response => {
-			todoList.todos = todoList.todos.map(x => {
-				if (x.id === response.data.id) {
-					return response.data;
-				}
-				return x;
-			});
-		});
+
+    $scope.update = function(todo) {
+        todo.$save();
 	};
-	
-	todoList.delete = function(todo) {
-		todoService.delete(todo).then(response => {
-			todoList.todos = todoList.todos.filter(e => e.id !== todo.id);
-		});
+
+    $scope.delete = function(todo) {
+    	todo.$delete();
 	};
+
+    $scope.onSearch = function(term) {
+		todoService.findByText(term).then(function(response) {
+			$scope.todos = angular.fromJson(response.data);
+		}, function(error) {
+			console.log(error);
+		});
+	}
+
   }]);

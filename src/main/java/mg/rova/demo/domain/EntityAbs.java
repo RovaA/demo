@@ -4,9 +4,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 @MappedSuperclass
-public abstract class EntityAbs implements IsEntity<Long> {
+public abstract class EntityAbs implements IsEntity<Long>, Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
