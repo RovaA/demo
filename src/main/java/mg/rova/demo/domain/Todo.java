@@ -11,7 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
-@Document(indexName = "demo", type = "todo")
+@Document(indexName = "demo", type = "todo", shards = 2)
 public class Todo extends EntityAbs {
 
 	private boolean done;
