@@ -4,6 +4,8 @@ import org.elasticsearch.client.Client;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 import org.elasticsearch.transport.client.PreBuiltTransportClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
@@ -16,13 +18,22 @@ import java.net.UnknownHostException;
 @EnableElasticsearchRepositories
 public class ElasticConfig {
 
+    @Value("${elasticsearch.host:127.0.0.1}")
+    private String host;
+
+    @Value("${elasticsearch.port:9300}")
+    private int port;
+
+    @Autowired
+    private ElasticProperties elasticProperties;
+
     @Bean
     public Client client() throws UnknownHostException {
         final Settings settings = Settings.builder()
-                .put("cluster.name", "demo")
+                .put("cluster.name", elasticProperties.getClusterName())
                 .build();
         return new PreBuiltTransportClient(settings)
-                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName("127.0.0.1"), 9300));
+                .addTransportAddress(new InetSocketTransportAddress(InetAddress.getByName(host), port));
     }
 
     @Bean
