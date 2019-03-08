@@ -14,7 +14,7 @@ import org.springframework.data.elasticsearch.repository.config.EnableElasticsea
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-@Configuration
+//@Configuration
 @EnableElasticsearchRepositories
 public class ElasticConfig {
 
