@@ -29,9 +29,8 @@ public class UserServiceImpl extends AbsServiceImpl<User, Long, UserRepository> 
 	}
 
 	@Override
-	public User save(User entity) {
-		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
-		return super.save(entity);
+	public User create(User user) {
+		passwordEncoder.encode(user.getPassword());
+		return this.save(user);
 	}
-
 }
